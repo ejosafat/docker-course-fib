@@ -10,10 +10,10 @@ script:
   - docker run ejosafat/fib-test npm test -- --coverage
 
 after_success:
-  - docker build-t ejosafat/docker-course-fib-multi-client ./client
-  - docker build-t ejosafat/docker-course-fib-multi-nginx ./nginx
-  - docker build-t ejosafat/docker-course-fib-multi-server ./server
-  - docker build-t ejosafat/docker-course-fib-multi-worker ./worker
+  - docker build -t ejosafat/docker-course-fib-multi-client ./client
+  - docker build -t ejosafat/docker-course-fib-multi-nginx ./nginx
+  - docker build -t ejosafat/docker-course-fib-multi-server ./server
+  - docker build -t ejosafat/docker-course-fib-multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to the docker hub
