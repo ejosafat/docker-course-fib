@@ -20,11 +20,11 @@ services:
       - /app/node_modules # Marker to leave this folder untouched, no sync with host folder
       - ./server:/app
     environment:
-      - REDIS_HOST=redis
+      - REDIS_HOST=docker-course-redis
       - REDIS_PORT=6379
       - PGUSER=postgres
       - PGHOST=postgres
-      - PGDATABASE=postgres
+      - PGDATABASE=fib_values
       - PGPASSWORD=postgres_password
       - PGPORT=5432
   client:
@@ -35,6 +35,9 @@ services:
       - /app/node_modules # Marker to leave this folder untouched, no sync with host folder
       - ./client:/app
   worker:
+    environment:
+      - REDIS_HOST=docker-course-redis
+      - REDIS_PORT=6379
     build:
       dockerfile: Dockerfile.dev
       context: ./worker
